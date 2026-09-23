@@ -18,8 +18,8 @@ const EVENTS = [
   },
   {
     date: { day: '05', month: 'OCT' },
-    title: 'Estudio Bíblico Intensivo',
-    desc: 'Profundizamos en el libro de Romanos. Trae tu Biblia y un corazón abierto.',
+    title: 'Preparados para Servir',
+    desc: 'Preparación para el servicio ministerial.',
     time: '18:30 h',
     tag: 'Formación',
   },
