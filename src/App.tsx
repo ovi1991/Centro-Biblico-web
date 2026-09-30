@@ -63,56 +63,57 @@ export default function App() {
     e.preventDefault()
     setLoading(true)
     setError(false)
-    setSent(true)
-    setForm({ nombre: '', email: '', mensaje: '' })
     
     try {
-    const res = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-      body: JSON.stringify({
-        access_key: '9f641d1d-41c3-448a-bf0a-e6c7db675ee6',
-        name: form.nombre,
-        email: form.email,
-        message: form.mensaje,
-        from_name: 'Web Centro Bíblico Marbella',
-        subject: `Nuevo mensaje de ${form.nombre} desde la web`,
-      }),
-    })
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: '9f641d1d-41c3-448a-bf0a-e6c7db675ee6',
+          name: form.nombre,
+          email: form.email,
+          message: form.mensaje,
+          from_name: 'Web Centro Bíblico Marbella',
+          subject: `Nuevo mensaje de ${form.nombre} desde la web`,
+        }),
+      })
 
-    const data = await res.json()
+      const data = await res.json()
 
-    if (data.success) {
-      setSent(true)
-      setForm({ nombre: '', email: '', mensaje: '' })
-      setTimeout(() => setSent(false), 6000)
-    } else {
+      if (data.success) {
+        setSent(true)
+        setForm({ nombre: '', email: '', mensaje: '' })
+        setTimeout(() => setSent(false), 6000)
+      } else {
+        setError(true)
+      }
+    } catch {
       setError(true)
+    } finally {
+      setLoading(false)
     }
-  } catch {
-    setError(true)
-  } finally {
-    setLoading(false)
-  }
-
   }
 
   return (
-    <div className="min-h-screen" style={{ fontFamily: "'Inter', system-ui, sans-serif", backgroundColor: '#0f1c2e', color: '#f5f0e8' }}>
+    <div className="min-h-screen" style={{ fontFamily: "var(--font-sans)", backgroundColor: 'var(--color-navy)', color: 'var(--color-cream)' }}>
 
       {/* ─── NAVIGATION ─── */}
-      <header className="fixed top-0 left-0 right-0 z-50" style={{ backgroundColor: 'rgba(15,28,46,0.92)', backdropFilter: 'blur(12px)', borderBottom: '1px solid rgba(201,168,76,0.15)' }}>
+      <header className="fixed top-0 left-0 right-0 z-50" style={{ backgroundColor: 'color-mix(in srgb, var(--color-navy) 92%, transparent)', backdropFilter: 'blur(12px)', borderBottom: '1px solid color-mix(in srgb, var(--color-gold) 15%, transparent)' }}>
         <div className="max-w-6xl mx-auto px-6 flex items-center justify-between" style={{ height: '68px' }}>
           <div className="flex items-center gap-3">
-            <div className="flex items-center justify-center w-8 h-8 rounded-full" style={{ background: 'linear-gradient(135deg, #c9a84c, #e8c97a)', fontSize: '14px' }}>✝</div>
+            <img 
+              src="/src/img/logoCentroBiblico.jpeg" 
+              alt="Logo Iglesia Cristiana Centro Bíblico de Marbella" 
+              style={{ width: '48px', height: '48px', borderRadius: '50%', objectFit: 'cover', border: '1.5px solid var(--color-gold)', backgroundColor: '#ffffff' }} 
+            />
             <div>
-              <div style={{ fontFamily: "'Lora', Georgia, serif", fontWeight: 600, fontSize: '16px', letterSpacing: '0.01em', color: '#f5f0e8' }}>
+              <div style={{ fontFamily: "var(--font-serif)", fontWeight: 600, fontSize: '16px', letterSpacing: '0.01em', color: 'var(--color-cream)' }}>
                 Centro Biblico Marbella
               </div>
-              <div style={{ fontSize: '10px', letterSpacing: '0.12em', color: '#c9a84c', textTransform: 'uppercase' }}>
+              <div style={{ fontSize: '10px', letterSpacing: '0.12em', color: 'var(--color-gold-light)', textTransform: 'uppercase' }}>
                 Iglesia Evangelica
               </div>
             </div>
@@ -121,31 +122,31 @@ export default function App() {
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-8">
             {NAV_LINKS.map(l => (
-              <a key={l.href} href={l.href} style={{ fontSize: '13px', letterSpacing: '0.06em', textTransform: 'uppercase', color: '#8a9bb5', textDecoration: 'none', transition: 'color 0.2s' }}
-                onMouseEnter={e => (e.currentTarget.style.color = '#c9a84c')}
-                onMouseLeave={e => (e.currentTarget.style.color = '#8a9bb5')}>
+              <a key={l.href} href={l.href} style={{ fontSize: '13px', letterSpacing: '0.06em', textTransform: 'uppercase', color: 'var(--color-muted-text)', textDecoration: 'none', transition: 'color 0.2s' }}
+                onMouseEnter={e => (e.currentTarget.style.color = 'var(--color-gold)')}
+                onMouseLeave={e => (e.currentTarget.style.color = 'var(--color-muted-text)')}>
                 {l.label}
               </a>
             ))}
-            <a href="#contacto" style={{ fontSize: '12px', letterSpacing: '0.08em', textTransform: 'uppercase', padding: '8px 20px', border: '1px solid #c9a84c', color: '#c9a84c', borderRadius: '2px', textDecoration: 'none', transition: 'all 0.2s' }}
-              onMouseEnter={e => { e.currentTarget.style.backgroundColor = '#c9a84c'; e.currentTarget.style.color = '#0f1c2e' }}
-              onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = '#c9a84c' }}>
+            <a href="#contacto" style={{ fontSize: '12px', letterSpacing: '0.08em', textTransform: 'uppercase', padding: '8px 20px', border: '1px solid var(--color-gold)', color: 'var(--color-gold)', borderRadius: '2px', textDecoration: 'none', transition: 'all 0.2s' }}
+              onMouseEnter={e => { e.currentTarget.style.backgroundColor = 'var(--color-gold)'; e.currentTarget.style.color = 'var(--color-navy)' }}
+              onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = 'var(--color-gold)' }}>
               Visítanos
             </a>
           </nav>
 
           {/* Mobile toggle */}
-          <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)} style={{ background: 'none', border: 'none', color: '#c9a84c', fontSize: '22px', cursor: 'pointer' }}>
+          <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)} style={{ background: 'none', border: 'none', color: 'var(--color-gold)', fontSize: '22px', cursor: 'pointer' }}>
             {menuOpen ? '✕' : '☰'}
           </button>
         </div>
 
         {/* Mobile menu */}
         {menuOpen && (
-          <div style={{ backgroundColor: '#162540', borderTop: '1px solid rgba(201,168,76,0.15)', padding: '16px 24px 24px' }}>
+          <div style={{ backgroundColor: 'var(--color-navy-light)', borderTop: '1px solid color-mix(in srgb, var(--color-gold) 15%, transparent)', padding: '16px 24px 24px' }}>
             {NAV_LINKS.map(l => (
               <a key={l.href} href={l.href} onClick={() => setMenuOpen(false)}
-                style={{ display: 'block', padding: '12px 0', fontSize: '13px', letterSpacing: '0.06em', textTransform: 'uppercase', color: '#8a9bb5', textDecoration: 'none', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                style={{ display: 'block', padding: '12px 0', fontSize: '13px', letterSpacing: '0.06em', textTransform: 'uppercase', color: 'var(--color-muted-text)', textDecoration: 'none', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
                 {l.label}
               </a>
             ))}
@@ -160,31 +161,31 @@ export default function App() {
           alt="Congregación evangelizando con las manos en alto"
           style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}
         />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(15,28,46,0.92) 45%, rgba(15,28,46,0.5) 100%)' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, color-mix(in srgb, var(--color-navy) 92%, transparent) 45%, color-mix(in srgb, var(--color-navy) 50%, transparent) 100%)' }} />
 
         <div className="relative max-w-6xl mx-auto px-6 w-full" style={{ paddingTop: '120px', paddingBottom: '80px' }}>
           <div style={{ maxWidth: '600px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '28px' }}>
-              <div style={{ height: '1px', width: '40px', backgroundColor: '#c9a84c' }} />
-              <span style={{ fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#c9a84c' }}>Bienvenido a nuestra familia</span>
+              <div style={{ height: '1px', width: '40px', backgroundColor: 'var(--color-gold)' }} />
+              <span style={{ fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--color-gold)' }}>Bienvenido a nuestra familia</span>
             </div>
-            <h1 style={{ fontFamily: "'Lora', Georgia, serif", fontSize: 'clamp(2.4rem, 5vw, 4rem)', fontWeight: 600, lineHeight: 1.15, color: '#f5f0e8', marginBottom: '24px' }}>
+            <h1 style={{ fontFamily: "var(--font-serif)", fontSize: 'clamp(2.4rem, 5vw, 4rem)', fontWeight: 600, lineHeight: 1.15, color: 'var(--color-cream)', marginBottom: '24px' }}>
               Un lugar donde la<br />
-              <em style={{ color: '#c9a84c', fontStyle: 'italic' }}>fe transforma</em><br />
+              <em style={{ color: 'var(--color-gold)', fontStyle: 'italic' }}>fe transforma</em><br />
               vidas
             </h1>
-            <p style={{ fontSize: '17px', lineHeight: 1.75, color: '#b0bfd4', marginBottom: '40px', maxWidth: '480px' }}>
+            <p style={{ fontSize: '17px', lineHeight: 1.75, color: 'var(--color-muted-text)', marginBottom: '40px', maxWidth: '480px' }}>
               Somos una comunidad evangélica unida en la Palabra de Dios, el amor fraternal y el servicio al prójimo. Te esperamos con los brazos abiertos.
             </p>
             <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
-              <a href="#horarios" style={{ display: 'inline-block', padding: '14px 32px', backgroundColor: '#c9a84c', color: '#0f1c2e', fontSize: '13px', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', textDecoration: 'none', borderRadius: '2px', transition: 'opacity 0.2s' }}
+              <a href="#horarios" style={{ display: 'inline-block', padding: '14px 32px', backgroundColor: 'var(--color-gold)', color: 'var(--color-navy)', fontSize: '13px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', textDecoration: 'none', borderRadius: '2px', transition: 'opacity 0.2s' }}
                 onMouseEnter={e => (e.currentTarget.style.opacity = '0.88')}
                 onMouseLeave={e => (e.currentTarget.style.opacity = '1')}>
                 Únete este domingo
               </a>
-              <a href="#nosotros" style={{ display: 'inline-block', padding: '14px 32px', border: '1px solid rgba(245,240,232,0.35)', color: '#f5f0e8', fontSize: '13px', letterSpacing: '0.08em', textTransform: 'uppercase', textDecoration: 'none', borderRadius: '2px', transition: 'all 0.2s' }}
-                onMouseEnter={e => { e.currentTarget.style.borderColor = '#c9a84c'; e.currentTarget.style.color = '#c9a84c' }}
-                onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(245,240,232,0.35)'; e.currentTarget.style.color = '#f5f0e8' }}>
+              <a href="#nosotros" style={{ display: 'inline-block', padding: '14px 32px', border: '1px solid rgba(245,240,232,0.35)', color: 'var(--color-cream)', fontSize: '13px', letterSpacing: '0.08em', textTransform: 'uppercase', textDecoration: 'none', borderRadius: '2px', transition: 'all 0.2s' }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--color-gold)'; e.currentTarget.style.color = 'var(--color-gold)' }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(245,240,232,0.35)'; e.currentTarget.style.color = 'var(--color-cream)' }}>
                 Conoce más
               </a>
             </div>
@@ -192,48 +193,48 @@ export default function App() {
         </div>
 
         {/* Scroll indicator */}
-        <div style={{ position: 'absolute', bottom: '32px', left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', color: '#8a9bb5' }}>
+        <div style={{ position: 'absolute', bottom: '32px', left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', color: 'var(--color-muted-text)' }}>
           <span style={{ fontSize: '10px', letterSpacing: '0.15em', textTransform: 'uppercase' }}>Descubre más</span>
-          <div style={{ width: '1px', height: '40px', background: 'linear-gradient(to bottom, #c9a84c, transparent)' }} />
+          <div style={{ width: '1px', height: '40px', background: 'linear-gradient(to bottom, var(--color-gold), transparent)' }} />
         </div>
       </section>
 
       {/* ─── STATS BANNER ─── */}
-      <div style={{ backgroundColor: '#c9a84c' }}>
+      <div style={{ backgroundColor: 'var(--color-gold)' }}>
         <div className="max-w-6xl mx-auto px-6" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0' }}>
           {[
             { num: '25+', label: 'Años sirviendo' },
             { num: '600+', label: 'Familias en comunidad' },
             { num: '12', label: 'Ministerios activos' },
           ].map((s, i) => (
-            <div key={i} style={{ textAlign: 'center', padding: '28px 16px', borderRight: i < 2 ? '1px solid rgba(15,28,46,0.15)' : 'none' }}>
-              <div style={{ fontFamily: "'Lora', Georgia, serif", fontSize: '2rem', fontWeight: 700, color: '#0f1c2e', lineHeight: 1 }}>{s.num}</div>
-              <div style={{ fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#162540', marginTop: '4px', opacity: 0.75 }}>{s.label}</div>
+            <div key={i} style={{ textAlign: 'center', padding: '28px 16px', borderRight: i < 2 ? '1px solid color-mix(in srgb, var(--color-navy) 20%, transparent)' : 'none' }}>
+              <div style={{ fontFamily: "var(--font-serif)", fontSize: '2rem', fontWeight: 700, color: 'var(--color-navy)', lineHeight: 1 }}>{s.num}</div>
+              <div style={{ fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--color-navy)', marginTop: '4px', opacity: 0.85, fontWeight: 600 }}>{s.label}</div>
             </div>
           ))}
         </div>
       </div>
 
       {/* ─── NOSOTROS ─── */}
-      <section id="nosotros" style={{ padding: 'clamp(60px, 8vw, 120px) 24px' }}>
+      <section id="nosotros" style={{ padding: 'clamp(60px, 8vw, 120px) 24px', backgroundColor: 'var(--color-navy)' }}>
         <div className="max-w-6xl mx-auto" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '60px', alignItems: 'center' }}>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '20px' }}>
-              <div style={{ height: '1px', width: '32px', backgroundColor: '#c9a84c' }} />
-              <span style={{ fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#c9a84c' }}>Nuestra misión</span>
+              <div style={{ height: '1px', width: '32px', backgroundColor: 'var(--color-gold)' }} />
+              <span style={{ fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--color-gold)' }}>Nuestra misión</span>
             </div>
-            <h2 style={{ fontFamily: "'Lora', Georgia, serif", fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', fontWeight: 600, lineHeight: 1.2, color: '#f5f0e8', marginBottom: '24px' }}>
+            <h2 style={{ fontFamily: "var(--font-serif)", fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', fontWeight: 600, lineHeight: 1.2, color: 'var(--color-cream)', marginBottom: '24px' }}>
               Arraigados en Cristo,<br />enviados al mundo
             </h2>
-            <p style={{ fontSize: '16px', lineHeight: 1.8, color: '#8a9bb5', marginBottom: '20px' }}>
+            <p style={{ fontSize: '16px', lineHeight: 1.8, color: 'var(--color-muted-text)', marginBottom: '20px' }}>
               Desde 1998, La Iglesia Centro Biblico Marbella ha proclamado el evangelio de Jesucristo en nuestra ciudad y más allá. Creemos en la Biblia como Palabra inspirada de Dios, en la salvación por gracia mediante la fe, y en el poder transformador del Espíritu Santo.
             </p>
-            <p style={{ fontSize: '16px', lineHeight: 1.8, color: '#8a9bb5', marginBottom: '32px' }}>
+            <p style={{ fontSize: '16px', lineHeight: 1.8, color: 'var(--color-muted-text)', marginBottom: '32px' }}>
               Nuestra visión es ser una iglesia que discipula, envía y ama — a los de dentro con fidelidad, y a los de fuera con compasión.
             </p>
-            <blockquote style={{ borderLeft: '3px solid #c9a84c', paddingLeft: '20px', fontFamily: "'Lora', Georgia, serif", fontStyle: 'italic', fontSize: '15px', color: '#e8dfd0', lineHeight: 1.7 }}>
+            <blockquote style={{ borderLeft: '3px solid var(--color-gold)', paddingLeft: '20px', fontFamily: "var(--font-serif)", fontStyle: 'italic', fontSize: '15px', color: 'var(--color-cream-dark)', lineHeight: 1.7 }}>
               "Porque tanto amó Dios al mundo, que dio a su Hijo unigénito, para que todo el que crea en él no se pierda, sino que tenga vida eterna."
-              <cite style={{ display: 'block', marginTop: '8px', fontStyle: 'normal', fontSize: '12px', letterSpacing: '0.08em', color: '#c9a84c' }}>— Juan 3:16</cite>
+              <cite style={{ display: 'block', marginTop: '8px', fontStyle: 'normal', fontSize: '12px', letterSpacing: '0.08em', color: 'var(--color-gold)' }}>— Juan 3:16</cite>
             </blockquote>
           </div>
           <div style={{ position: 'relative' }}>
@@ -242,35 +243,35 @@ export default function App() {
               alt="Congregación alabando a Dios en el culto"
               style={{ width: '100%', borderRadius: '2px', display: 'block', objectFit: 'cover', aspectRatio: '4/3' }}
             />
-            <div style={{ position: 'absolute', bottom: '-20px', right: '-20px', backgroundColor: '#162540', border: '1px solid rgba(201,168,76,0.3)', padding: '20px 24px', borderRadius: '2px' }}>
-              <div style={{ fontFamily: "'Lora', Georgia, serif", fontSize: '1.6rem', fontWeight: 700, color: '#c9a84c' }}>1998</div>
-              <div style={{ fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#8a9bb5', marginTop: '2px' }}>Fundada en fe</div>
+            <div style={{ position: 'absolute', bottom: '-20px', right: '-20px', backgroundColor: 'var(--color-navy-light)', border: '1px solid color-mix(in srgb, var(--color-gold) 30%, transparent)', padding: '20px 24px', borderRadius: '2px' }}>
+              <div style={{ fontFamily: "var(--font-serif)", fontSize: '1.6rem', fontWeight: 700, color: 'var(--color-gold)' }}>1998</div>
+              <div style={{ fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--color-muted-text)', marginTop: '2px' }}>Fundada en fe</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* ─── MINISTERIOS ─── */}
-      <section style={{ backgroundColor: '#162540', padding: 'clamp(60px, 8vw, 100px) 24px' }}>
+      <section style={{ backgroundColor: 'var(--color-navy-light)', padding: 'clamp(60px, 8vw, 100px) 24px' }}>
         <div className="max-w-6xl mx-auto">
           <div style={{ textAlign: 'center', marginBottom: '56px' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', marginBottom: '16px' }}>
-              <div style={{ height: '1px', width: '32px', backgroundColor: '#c9a84c' }} />
-              <span style={{ fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#c9a84c' }}>Ministerios</span>
-              <div style={{ height: '1px', width: '32px', backgroundColor: '#c9a84c' }} />
+              <div style={{ height: '1px', width: '32px', backgroundColor: 'var(--color-gold)' }} />
+              <span style={{ fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--color-gold)' }}>Ministerios</span>
+              <div style={{ height: '1px', width: '32px', backgroundColor: 'var(--color-gold)' }} />
             </div>
-            <h2 style={{ fontFamily: "'Lora', Georgia, serif", fontSize: 'clamp(1.6rem, 3vw, 2.4rem)', fontWeight: 600, color: '#f5f0e8' }}>
+            <h2 style={{ fontFamily: "var(--font-serif)", fontSize: 'clamp(1.6rem, 3vw, 2.4rem)', fontWeight: 600, color: 'var(--color-cream)' }}>
               Creciendo juntos en cada área
             </h2>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '2px' }}>
             {MINISTRIES.map((m, i) => (
-              <div key={i} style={{ backgroundColor: '#1e3358', padding: '36px 28px', transition: 'background-color 0.2s', cursor: 'default' }}
-                onMouseEnter={e => (e.currentTarget.style.backgroundColor = '#243d6a')}
-                onMouseLeave={e => (e.currentTarget.style.backgroundColor = '#1e3358')}>
+              <div key={i} style={{ backgroundColor: 'var(--color-navy-mid)', padding: '36px 28px', transition: 'filter 0.2s', cursor: 'default' }}
+                onMouseEnter={e => (e.currentTarget.style.filter = 'brightness(1.15)')}
+                onMouseLeave={e => (e.currentTarget.style.filter = 'brightness(1)')}>
                 <div style={{ fontSize: '28px', marginBottom: '16px' }}>{m.icon}</div>
-                <h3 style={{ fontFamily: "'Lora', Georgia, serif", fontSize: '1.15rem', fontWeight: 600, color: '#f5f0e8', marginBottom: '10px' }}>{m.title}</h3>
-                <p style={{ fontSize: '14px', lineHeight: 1.7, color: '#8a9bb5' }}>{m.desc}</p>
+                <h3 style={{ fontFamily: "var(--font-serif)", fontSize: '1.15rem', fontWeight: 600, color: 'var(--color-cream)', marginBottom: '10px' }}>{m.title}</h3>
+                <p style={{ fontSize: '14px', lineHeight: 1.7, color: 'var(--color-muted-text)' }}>{m.desc}</p>
               </div>
             ))}
           </div>
@@ -278,35 +279,35 @@ export default function App() {
       </section>
 
       {/* ─── HORARIOS ─── */}
-      <section id="horarios" style={{ padding: 'clamp(60px, 8vw, 120px) 24px' }}>
+      <section id="horarios" style={{ padding: 'clamp(60px, 8vw, 120px) 24px', backgroundColor: 'var(--color-navy)' }}>
         <div className="max-w-6xl mx-auto" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '60px', alignItems: 'start' }}>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '20px' }}>
-              <div style={{ height: '1px', width: '32px', backgroundColor: '#c9a84c' }} />
-              <span style={{ fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#c9a84c' }}>Horarios</span>
+              <div style={{ height: '1px', width: '32px', backgroundColor: 'var(--color-gold)' }} />
+              <span style={{ fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--color-gold)' }}>Horarios</span>
             </div>
-            <h2 style={{ fontFamily: "'Lora', Georgia, serif", fontSize: 'clamp(1.8rem, 3.5vw, 2.6rem)', fontWeight: 600, lineHeight: 1.2, color: '#f5f0e8', marginBottom: '20px' }}>
+            <h2 style={{ fontFamily: "var(--font-serif)", fontSize: 'clamp(1.8rem, 3.5vw, 2.6rem)', fontWeight: 600, lineHeight: 1.2, color: 'var(--color-cream)', marginBottom: '20px' }}>
               Te esperamos cada semana
             </h2>
-            <p style={{ fontSize: '15px', lineHeight: 1.8, color: '#8a9bb5', marginBottom: '32px' }}>
+            <p style={{ fontSize: '15px', lineHeight: 1.8, color: 'var(--color-muted-text)', marginBottom: '32px' }}>
               Todos nuestros cultos son abiertos para todo aquel que quiera encontrarse con Dios. No necesitas reservar — solo ven con tu corazón dispuesto.
             </p>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '16px', backgroundColor: '#162540', border: '1px solid rgba(201,168,76,0.2)', borderRadius: '2px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '16px', backgroundColor: 'var(--color-navy-light)', border: '1px solid color-mix(in srgb, var(--color-gold) 20%, transparent)', borderRadius: '2px' }}>
               <span style={{ fontSize: '20px' }}>📍</span>
               <div>
-                <div style={{ fontSize: '14px', fontWeight: 500, color: '#f5f0e8' }}>Avda Mercado</div>
-                <div style={{ fontSize: '13px', color: '#8a9bb5' }}>29600 Marbella, España</div>
+                <div style={{ fontSize: '14px', fontWeight: 500, color: 'var(--color-cream)' }}>Avda Mercado</div>
+                <div style={{ fontSize: '13px', color: 'var(--color-muted-text)' }}>29600 Marbella, España</div>
               </div>
             </div>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
             {SERVICES.map((s, i) => (
-              <div key={i} style={{ backgroundColor: '#162540', border: '1px solid rgba(201,168,76,0.12)', padding: '28px 32px' }}>
-                <div style={{ fontFamily: "'Lora', Georgia, serif", fontSize: '1.1rem', fontWeight: 600, color: '#c9a84c', marginBottom: '12px' }}>{s.day}</div>
+              <div key={i} style={{ backgroundColor: 'var(--color-navy-light)', border: '1px solid color-mix(in srgb, var(--color-gold) 12%, transparent)', padding: '28px 32px' }}>
+                <div style={{ fontFamily: "var(--font-serif)", fontSize: '1.1rem', fontWeight: 600, color: 'var(--color-gold)', marginBottom: '12px' }}>{s.day}</div>
                 {s.times.map((t, j) => (
                   <div key={j} style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '6px 0', borderBottom: j < s.times.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none' }}>
-                    <div style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#c9a84c', flexShrink: 0 }} />
-                    <span style={{ fontSize: '14px', color: '#e8dfd0' }}>{t}</span>
+                    <div style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'var(--color-gold)', flexShrink: 0 }} />
+                    <span style={{ fontSize: '14px', color: 'var(--color-cream-dark)' }}>{t}</span>
                   </div>
                 ))}
               </div>
@@ -316,49 +317,49 @@ export default function App() {
       </section>
 
       {/* ─── QUOTE DIVIDER ─── */}
-      <div style={{ backgroundColor: '#1e3358', padding: '60px 24px', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', fontSize: '180px', color: 'rgba(201,168,76,0.04)', fontFamily: 'Georgia, serif', lineHeight: 1, pointerEvents: 'none' }}>❝</div>
+      <div style={{ backgroundColor: 'var(--color-navy-mid)', padding: '60px 24px', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', fontSize: '180px', color: 'color-mix(in srgb, var(--color-gold) 4%, transparent)', fontFamily: 'Georgia, serif', lineHeight: 1, pointerEvents: 'none' }}>❝</div>
         <div className="max-w-3xl mx-auto" style={{ position: 'relative' }}>
-          <p style={{ fontFamily: "'Lora', Georgia, serif", fontSize: 'clamp(1.2rem, 2.5vw, 1.8rem)', fontStyle: 'italic', lineHeight: 1.6, color: '#e8dfd0', marginBottom: '16px' }}>
+          <p style={{ fontFamily: "var(--font-serif)", fontSize: 'clamp(1.2rem, 2.5vw, 1.8rem)', fontStyle: 'italic', lineHeight: 1.6, color: 'var(--color-cream-dark)', marginBottom: '16px' }}>
             "El Señor es mi pastor; nada me faltará. En lugares de delicados pastos me hará descansar."
           </p>
-          <cite style={{ fontSize: '12px', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#c9a84c' }}>— Salmo 23:1–2</cite>
+          <cite style={{ fontSize: '12px', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--color-gold)' }}>— Salmo 23:1–2</cite>
         </div>
       </div>
 
       {/* ─── EVENTOS ─── */}
-      <section id="eventos" style={{ padding: 'clamp(60px, 8vw, 120px) 24px', backgroundColor: '#0f1c2e' }}>
+      <section id="eventos" style={{ padding: 'clamp(60px, 8vw, 120px) 24px', backgroundColor: 'var(--color-navy)' }}>
         <div className="max-w-6xl mx-auto">
           <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: '48px', flexWrap: 'wrap', gap: '16px' }}>
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px' }}>
-                <div style={{ height: '1px', width: '32px', backgroundColor: '#c9a84c' }} />
-                <span style={{ fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#c9a84c' }}>Próximos eventos</span>
+                <div style={{ height: '1px', width: '32px', backgroundColor: 'var(--color-gold)' }} />
+                <span style={{ fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--color-gold)' }}>Próximos eventos</span>
               </div>
-              <h2 style={{ fontFamily: "'Lora', Georgia, serif", fontSize: 'clamp(1.6rem, 3vw, 2.4rem)', fontWeight: 600, color: '#f5f0e8' }}>
+              <h2 style={{ fontFamily: "var(--font-serif)", fontSize: 'clamp(1.6rem, 3vw, 2.4rem)', fontWeight: 600, color: 'var(--color-cream)' }}>
                 Actividades de la iglesia
               </h2>
             </div>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '2px' }}>
             {EVENTS.map((ev, i) => (
-              <div key={i} style={{ backgroundColor: '#162540', padding: '28px', cursor: 'pointer', transition: 'background-color 0.2s', position: 'relative', overflow: 'hidden' }}
-                onMouseEnter={e => (e.currentTarget.style.backgroundColor = '#1e3358')}
-                onMouseLeave={e => (e.currentTarget.style.backgroundColor = '#162540')}>
+              <div key={i} style={{ backgroundColor: 'var(--color-navy-light)', padding: '28px', cursor: 'pointer', transition: 'background-color 0.2s', position: 'relative', overflow: 'hidden' }}
+                onMouseEnter={e => (e.currentTarget.style.backgroundColor = 'var(--color-navy-mid)')}
+                onMouseLeave={e => (e.currentTarget.style.backgroundColor = 'var(--color-navy-light)')}>
                 <div style={{ display: 'flex', gap: '16px', marginBottom: '16px' }}>
-                  <div style={{ textAlign: 'center', minWidth: '52px', padding: '8px', backgroundColor: '#0f1c2e', borderRadius: '2px' }}>
-                    <div style={{ fontFamily: "'Lora', Georgia, serif", fontSize: '1.5rem', fontWeight: 700, color: '#c9a84c', lineHeight: 1 }}>{ev.date.day}</div>
-                    <div style={{ fontSize: '9px', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#8a9bb5', marginTop: '2px' }}>{ev.date.month}</div>
+                  <div style={{ textAlign: 'center', minWidth: '52px', padding: '8px', backgroundColor: 'var(--color-navy)', borderRadius: '2px' }}>
+                    <div style={{ fontFamily: "var(--font-serif)", fontSize: '1.5rem', fontWeight: 700, color: 'var(--color-gold)', lineHeight: 1 }}>{ev.date.day}</div>
+                    <div style={{ fontSize: '9px', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--color-muted-text)', marginTop: '2px' }}>{ev.date.month}</div>
                   </div>
                   <div>
-                    <div style={{ fontSize: '10px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#c9a84c', marginBottom: '4px' }}>{ev.tag}</div>
-                    <h3 style={{ fontFamily: "'Lora', Georgia, serif", fontSize: '1.05rem', fontWeight: 600, color: '#f5f0e8', lineHeight: 1.3 }}>{ev.title}</h3>
+                    <div style={{ fontSize: '10px', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--color-gold)', marginBottom: '4px' }}>{ev.tag}</div>
+                    <h3 style={{ fontFamily: "var(--font-serif)", fontSize: '1.05rem', fontWeight: 600, color: 'var(--color-cream)', lineHeight: 1.3 }}>{ev.title}</h3>
                   </div>
                 </div>
-                <p style={{ fontSize: '13px', lineHeight: 1.65, color: '#8a9bb5', marginBottom: '16px' }}>{ev.desc}</p>
+                <p style={{ fontSize: '13px', lineHeight: 1.65, color: 'var(--color-muted-text)', marginBottom: '16px' }}>{ev.desc}</p>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <span style={{ fontSize: '12px', color: '#6b7fa0' }}>🕐</span>
-                  <span style={{ fontSize: '12px', color: '#6b7fa0' }}>{ev.time}</span>
+                  <span style={{ fontSize: '12px', color: 'var(--color-muted-text)' }}>🕐</span>
+                  <span style={{ fontSize: '12px', color: 'var(--color-muted-text)' }}>{ev.time}</span>
                 </div>
               </div>
             ))}
@@ -377,23 +378,23 @@ export default function App() {
             <img src={img.url} alt={img.alt} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.6s', display: 'block' }}
               onMouseEnter={e => (e.currentTarget.style.transform = 'scale(1.05)')}
               onMouseLeave={e => (e.currentTarget.style.transform = 'scale(1)')} />
-            <div style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(15,28,46,0.4)' }} />
+            <div style={{ position: 'absolute', inset: 0, backgroundColor: 'color-mix(in srgb, var(--color-navy) 40%, transparent)' }} />
           </div>
         ))}
       </div>
 
       {/* ─── CONTACTO ─── */}
-      <section id="contacto" style={{ padding: 'clamp(60px, 8vw, 120px) 24px', backgroundColor: '#162540' }}>
+      <section id="contacto" style={{ padding: 'clamp(60px, 8vw, 120px) 24px', backgroundColor: 'var(--color-navy-light)' }}>
         <div className="max-w-6xl mx-auto" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '60px' }}>
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '20px' }}>
-              <div style={{ height: '1px', width: '32px', backgroundColor: '#c9a84c' }} />
-              <span style={{ fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#c9a84c' }}>Contacto</span>
+              <div style={{ height: '1px', width: '32px', backgroundColor: 'var(--color-gold)' }} />
+              <span style={{ fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--color-gold)' }}>Contacto</span>
             </div>
-            <h2 style={{ fontFamily: "'Lora', Georgia, serif", fontSize: 'clamp(1.8rem, 3vw, 2.4rem)', fontWeight: 600, color: '#f5f0e8', marginBottom: '20px' }}>
+            <h2 style={{ fontFamily: "var(--font-serif)", fontSize: 'clamp(1.8rem, 3vw, 2.4rem)', fontWeight: 600, color: 'var(--color-cream)', marginBottom: '20px' }}>
               Estamos aquí para ti
             </h2>
-            <p style={{ fontSize: '15px', lineHeight: 1.8, color: '#8a9bb5', marginBottom: '36px' }}>
+            <p style={{ fontSize: '15px', lineHeight: 1.8, color: 'var(--color-muted-text)', marginBottom: '36px' }}>
               Si tienes preguntas, necesitas oración, o simplemente quieres conocernos, no dudes en escribirnos. Respondemos con amor.
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
@@ -405,8 +406,8 @@ export default function App() {
                 <div key={i} style={{ display: 'flex', gap: '14px', alignItems: 'flex-start' }}>
                   <span style={{ fontSize: '16px', marginTop: '1px' }}>{c.icon}</span>
                   <div>
-                    <div style={{ fontSize: '11px', letterSpacing: '0.08em', textTransform: 'uppercase', color: '#c9a84c', marginBottom: '2px' }}>{c.label}</div>
-                    <div style={{ fontSize: '14px', color: '#e8dfd0' }}>{c.value}</div>
+                    <div style={{ fontSize: '11px', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--color-gold)', marginBottom: '2px' }}>{c.label}</div>
+                    <div style={{ fontSize: '14px', color: 'var(--color-cream-dark)' }}>{c.value}</div>
                   </div>
                 </div>
               ))}
@@ -417,7 +418,7 @@ export default function App() {
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               {(['nombre', 'email'] as const).map(field => (
                 <div key={field}>
-                  <label style={{ display: 'block', fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#c9a84c', marginBottom: '8px' }}>
+                  <label style={{ display: 'block', fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--color-gold)', marginBottom: '8px' }}>
                     {field === 'nombre' ? 'Nombre completo' : 'Correo electrónico'}
                   </label>
                   <input
@@ -426,14 +427,14 @@ export default function App() {
                     value={form[field]}
                     onChange={e => setForm(f => ({ ...f, [field]: e.target.value }))}
                     placeholder={field === 'nombre' ? 'María García' : 'maria@ejemplo.com'}
-                    style={{ width: '100%', padding: '12px 16px', backgroundColor: '#0f1c2e', border: '1px solid rgba(201,168,76,0.2)', borderRadius: '2px', color: '#f5f0e8', fontSize: '14px', outline: 'none', transition: 'border-color 0.2s' }}
-                    onFocus={e => (e.currentTarget.style.borderColor = '#c9a84c')}
-                    onBlur={e => (e.currentTarget.style.borderColor = 'rgba(201,168,76,0.2)')}
+                    style={{ width: '100%', padding: '12px 16px', backgroundColor: 'var(--color-navy)', border: '1px solid color-mix(in srgb, var(--color-gold) 20%, transparent)', borderRadius: '2px', color: 'var(--color-cream)', fontSize: '14px', outline: 'none', transition: 'border-color 0.2s' }}
+                    onFocus={e => (e.currentTarget.style.borderColor = 'var(--color-gold)')}
+                    onBlur={e => (e.currentTarget.style.borderColor = 'color-mix(in srgb, var(--color-gold) 20%, transparent)')}
                   />
                 </div>
               ))}
               <div>
-                <label style={{ display: 'block', fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#c9a84c', marginBottom: '8px' }}>
+                <label style={{ display: 'block', fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--color-gold)', marginBottom: '8px' }}>
                   Mensaje
                 </label>
                 <textarea
@@ -442,19 +443,27 @@ export default function App() {
                   value={form.mensaje}
                   onChange={e => setForm(f => ({ ...f, mensaje: e.target.value }))}
                   placeholder="¿En qué podemos ayudarte o cómo podemos orar contigo?"
-                  style={{ width: '100%', padding: '12px 16px', backgroundColor: '#0f1c2e', border: '1px solid rgba(201,168,76,0.2)', borderRadius: '2px', color: '#f5f0e8', fontSize: '14px', outline: 'none', resize: 'vertical', fontFamily: 'inherit', transition: 'border-color 0.2s' }}
-                  onFocus={e => (e.currentTarget.style.borderColor = '#c9a84c')}
-                  onBlur={e => (e.currentTarget.style.borderColor = 'rgba(201,168,76,0.2)')}
+                  style={{ width: '100%', padding: '12px 16px', backgroundColor: 'var(--color-navy)', border: '1px solid color-mix(in srgb, var(--color-gold) 20%, transparent)', borderRadius: '2px', color: 'var(--color-cream)', fontSize: '14px', outline: 'none', resize: 'vertical', fontFamily: 'inherit', transition: 'border-color 0.2s' }}
+                  onFocus={e => (e.currentTarget.style.borderColor = 'var(--color-gold)')}
+                  onBlur={e => (e.currentTarget.style.borderColor = 'color-mix(in srgb, var(--color-gold) 20%, transparent)')}
                 />
               </div>
-              <button type="submit" style={{ padding: '14px 28px', backgroundColor: '#c9a84c', color: '#0f1c2e', fontSize: '13px', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', border: 'none', borderRadius: '2px', cursor: 'pointer', transition: 'opacity 0.2s', alignSelf: 'flex-start' }}
-                onMouseEnter={e => (e.currentTarget.style.opacity = '0.85')}
-                onMouseLeave={e => (e.currentTarget.style.opacity = '1')}>
-                Enviar mensaje
+              <button 
+                type="submit" 
+                disabled={loading}
+                style={{ padding: '14px 28px', backgroundColor: 'var(--color-gold)', color: 'var(--color-navy)', fontSize: '13px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', border: 'none', borderRadius: '2px', cursor: loading ? 'not-allowed' : 'pointer', transition: 'opacity 0.2s', alignSelf: 'flex-start', opacity: loading ? 0.7 : 1 }}
+                onMouseEnter={e => { if (!loading) e.currentTarget.style.opacity = '0.85' }}
+                onMouseLeave={e => { if (!loading) e.currentTarget.style.opacity = '1' }}>
+                {loading ? 'Enviando...' : 'Enviar mensaje'}
               </button>
               {sent && (
-                <div style={{ padding: '12px 16px', backgroundColor: 'rgba(201,168,76,0.15)', border: '1px solid rgba(201,168,76,0.4)', borderRadius: '2px', fontSize: '14px', color: '#c9a84c' }}>
+                <div style={{ padding: '12px 16px', backgroundColor: 'color-mix(in srgb, var(--color-gold) 15%, transparent)', border: '1px solid color-mix(in srgb, var(--color-gold) 40%, transparent)', borderRadius: '2px', fontSize: '14px', color: 'var(--color-gold)' }}>
                   ¡Gracias! Tu mensaje fue enviado. Te responderemos pronto. 🙏
+                </div>
+              )}
+              {error && (
+                <div style={{ padding: '12px 16px', backgroundColor: 'rgba(239, 68, 68, 0.15)', border: '1px solid rgba(239, 68, 68, 0.4)', borderRadius: '2px', fontSize: '14px', color: '#f87171' }}>
+                  Hubo un problema al enviar el formulario. Por favor, inténtalo de nuevo.
                 </div>
               )}
             </form>
@@ -463,22 +472,26 @@ export default function App() {
       </section>
 
       {/* ─── FOOTER ─── */}
-      <footer style={{ backgroundColor: '#0a1520', borderTop: '1px solid rgba(201,168,76,0.12)', padding: '40px 24px' }}>
+      <footer style={{ backgroundColor: 'var(--color-navy-dark)', borderTop: '1px solid color-mix(in srgb, var(--color-gold) 12%, transparent)', padding: '40px 24px' }}>
         <div className="max-w-6xl mx-auto" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px', textAlign: 'center' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <div style={{ width: '28px', height: '28px', borderRadius: '50%', background: 'linear-gradient(135deg, #c9a84c, #e8c97a)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '13px' }}>✝</div>
-            <span style={{ fontFamily: "'Lora', Georgia, serif", fontWeight: 600, fontSize: '15px', color: '#e8dfd0' }}>Iglesia Centro Biblico Marbella</span>
+            <img 
+              src="/src/img/logoCentroBiblico.jpeg" 
+              alt="Logo Iglesia Cristiana Centro Bíblico de Marbella" 
+              style={{ width: '36px', height: '36px', borderRadius: '50%', objectFit: 'cover', border: '1.5px solid var(--color-gold)', backgroundColor: '#ffffff' }} 
+            />
+            <span style={{ fontFamily: "var(--font-serif)", fontWeight: 600, fontSize: '15px', color: 'var(--color-cream-dark)' }}>Iglesia Centro Biblico Marbella</span>
           </div>
           <div style={{ display: 'flex', gap: '28px', flexWrap: 'wrap', justifyContent: 'center' }}>
             {NAV_LINKS.map(l => (
-              <a key={l.href} href={l.href} style={{ fontSize: '12px', letterSpacing: '0.08em', textTransform: 'uppercase', color: '#8a9bb5', textDecoration: 'none', transition: 'color 0.2s' }}
-                onMouseEnter={e => (e.currentTarget.style.color = '#c9a84c')}
-                onMouseLeave={e => (e.currentTarget.style.color = '#8a9bb5')}>
+              <a key={l.href} href={l.href} style={{ fontSize: '12px', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--color-muted-text)', textDecoration: 'none', transition: 'color 0.2s' }}
+                onMouseEnter={e => (e.currentTarget.style.color = 'var(--color-gold)')}
+                onMouseLeave={e => (e.currentTarget.style.color = 'var(--color-muted-text)')}>
                 {l.label}
               </a>
             ))}
           </div>
-          <p style={{ fontSize: '12px', color: '#4a5a70', marginTop: '4px' }}>
+          <p style={{ fontSize: '12px', color: 'var(--color-muted-text)', opacity: 0.7, marginTop: '4px' }}>
             © 2026 Iglesia Centro Biblico Marbella · "La verdad os hará libres" — Juan 8:32
           </p>
         </div>
