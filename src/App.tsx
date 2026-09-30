@@ -41,8 +41,7 @@ const EVENTS = [
 ]
 
 const SERVICES = [
-  { day: 'Domingo', times: ['11:00 h — Culto Principal'] },
-  { day: 'Martes', times: ['19:00 h — Estudio Bíblico'] },
+  { day: 'Domingo', times: ['11:00 h — Culto Principal'] }
 ]
 
 const MINISTRIES = [
