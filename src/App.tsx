@@ -6,7 +6,7 @@ const NAV_LINKS = [
   { label: 'Nosotros', href: '#nosotros' },
   { label: 'Horarios', href: '#horarios' },
   { label: 'Eventos', href: '#eventos' },
-  { label: 'Contacto', href: '#contacto' },
+  
 ]
 
 const EVENTS = [
@@ -132,7 +132,7 @@ export default function App() {
             <a href="#contacto" style={{ fontSize: '12px', letterSpacing: '0.08em', textTransform: 'uppercase', padding: '8px 20px', border: '1px solid var(--color-gold)', color: 'var(--color-gold)', borderRadius: '2px', textDecoration: 'none', transition: 'all 0.2s' }}
               onMouseEnter={e => { e.currentTarget.style.backgroundColor = 'var(--color-gold)'; e.currentTarget.style.color = 'var(--color-navy)' }}
               onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = 'var(--color-gold)' }}>
-              Visítanos
+              Contáctanos
             </a>
           </nav>
 
