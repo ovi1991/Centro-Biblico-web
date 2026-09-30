@@ -177,7 +177,7 @@ export default function App() {
               vidas
             </h1>
             <p style={{ fontSize: '17px', lineHeight: 1.75, color: 'var(--color-muted-text)', marginBottom: '40px', maxWidth: '480px' }}>
-              Somos una comunidad evangélica unida en la Palabra de Dios, el amor fraternal y el servicio al prójimo. Te esperamos con los brazos abiertos.
+              Somos una comunidad cristiana unida en la Palabra de Dios, el amor fraternal y el servicio al prójimo. Te esperamos con los brazos abiertos.
             </p>
             <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
               <a href="#horarios" style={{ display: 'inline-block', padding: '14px 32px', backgroundColor: 'var(--color-gold)', color: 'var(--color-navy)', fontSize: '13px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', textDecoration: 'none', borderRadius: '2px', transition: 'opacity 0.2s' }}
