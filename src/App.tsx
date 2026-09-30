@@ -41,7 +41,7 @@ const EVENTS = [
 ]
 
 const SERVICES = [
-  { day: 'Sabado', times: ['18:00 h — Reunion de jovenes'] },
+  { day: 'Sabado', times: ['18:00 h — Reunión de jovenes'] },
   { day: 'Domingo', times: ['11:00 h — Culto Principal'] }
 ]
 
