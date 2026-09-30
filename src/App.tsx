@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import logoCentroBiblico from './img/logoCentroBiblico.jpeg'
+
 
 const NAV_LINKS = [
   { label: 'Inicio', href: '#inicio' },
@@ -106,7 +106,7 @@ export default function App() {
         <div className="max-w-6xl mx-auto px-6 flex items-center justify-between" style={{ height: '68px' }}>
           <div className="flex items-center gap-3">
             <img 
-              src= {logoCentroBiblico}
+              src= "/logoCentroBiblico.jpeg"
               alt="Logo Iglesia Cristiana Centro Bíblico de Marbella" 
               style={{ width: '48px', height: '48px', borderRadius: '50%', objectFit: 'cover', border: '1.5px solid var(--color-gold)', backgroundColor: '#ffffff' }} 
             />
@@ -478,7 +478,7 @@ export default function App() {
         <div className="max-w-6xl mx-auto" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px', textAlign: 'center' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <img 
-              src= {logoCentroBiblico} 
+              src= "/logoCentroBiblico.jpeg" 
               alt="Logo Iglesia Cristiana Centro Bíblico de Marbella" 
               style={{ width: '36px', height: '36px', borderRadius: '50%', objectFit: 'cover', border: '1.5px solid var(--color-gold)', backgroundColor: '#ffffff' }} 
             />
