@@ -110,12 +110,13 @@ export default function App() {
               style={{ width: '48px', height: '48px', borderRadius: '50%', objectFit: 'cover', border: '1.5px solid var(--color-gold)', backgroundColor: '#ffffff' }} 
             />
             <div>
+              <div style={{ fontSize: '10px', letterSpacing: '0.12em', color: 'var(--color-gold-light)', textTransform: 'uppercase' }}>
+                Iglesia Cristiana
+              </div>
               <div style={{ fontFamily: "var(--font-serif)", fontWeight: 600, fontSize: '16px', letterSpacing: '0.01em', color: 'var(--color-cream)' }}>
                 Centro Biblico Marbella
               </div>
-              <div style={{ fontSize: '10px', letterSpacing: '0.12em', color: 'var(--color-gold-light)', textTransform: 'uppercase' }}>
-                Iglesia Evangelica
-              </div>
+              
             </div>
           </div>
 
@@ -167,7 +168,7 @@ export default function App() {
           <div style={{ maxWidth: '600px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '28px' }}>
               <div style={{ height: '1px', width: '40px', backgroundColor: 'var(--color-gold)' }} />
-              <span style={{ fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--color-gold)' }}>Bienvenido a nuestra familia</span>
+              <span style={{ fontSize: '15px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--color-gold)' }}>Bienvenidos a Casa</span>
             </div>
             <h1 style={{ fontFamily: "var(--font-serif)", fontSize: 'clamp(2.4rem, 5vw, 4rem)', fontWeight: 600, lineHeight: 1.15, color: 'var(--color-cream)', marginBottom: '24px' }}>
               Un lugar donde la<br />
