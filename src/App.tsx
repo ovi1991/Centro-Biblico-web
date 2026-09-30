@@ -296,7 +296,7 @@ export default function App() {
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '16px', backgroundColor: 'var(--color-navy-light)', border: '1px solid color-mix(in srgb, var(--color-gold) 20%, transparent)', borderRadius: '2px' }}>
               <span style={{ fontSize: '20px' }}>📍</span>
               <div>
-                <div style={{ fontSize: '14px', fontWeight: 500, color: 'var(--color-cream)' }}>Avda Mercado</div>
+                <div style={{ fontSize: '14px', fontWeight: 500, color: 'var(--color-cream)' }}>Avda Mercado 12</div>
                 <div style={{ fontSize: '13px', color: 'var(--color-muted-text)' }}>29600 Marbella, España</div>
               </div>
             </div>
@@ -401,8 +401,8 @@ export default function App() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               {[
                 { icon: '📞', label: 'Teléfono', value: '+34 91 000 1234' },
-                { icon: '✉️', label: 'Correo', value: 'info@iglesiavidanueva.es' },
-                { icon: '📍', label: 'Dirección', value: 'Avda Mercado , Marbella' },
+                { icon: '✉️', label: 'Correo', value: 'info@centrobiblicomarbella.es' },
+                { icon: '📍', label: 'Dirección', value: 'Avda Mercado 12, Marbella' },
               ].map((c, i) => (
                 <div key={i} style={{ display: 'flex', gap: '14px', alignItems: 'flex-start' }}>
                   <span style={{ fontSize: '16px', marginTop: '1px' }}>{c.icon}</span>
@@ -481,7 +481,7 @@ export default function App() {
               alt="Logo Iglesia Cristiana Centro Bíblico de Marbella" 
               style={{ width: '36px', height: '36px', borderRadius: '50%', objectFit: 'cover', border: '1.5px solid var(--color-gold)', backgroundColor: '#ffffff' }} 
             />
-            <span style={{ fontFamily: "var(--font-serif)", fontWeight: 600, fontSize: '15px', color: 'var(--color-cream-dark)' }}>Iglesia Centro Biblico Marbella</span>
+            <span style={{ fontFamily: "var(--font-serif)", fontWeight: 600, fontSize: '15px', color: 'var(--color-cream-dark)' }}>Iglesia Cristiana Centro Bíblico de Marbella</span>
           </div>
           <div style={{ display: 'flex', gap: '28px', flexWrap: 'wrap', justifyContent: 'center' }}>
             {NAV_LINKS.map(l => (
@@ -493,7 +493,7 @@ export default function App() {
             ))}
           </div>
           <p style={{ fontSize: '12px', color: 'var(--color-muted-text)', opacity: 0.7, marginTop: '4px' }}>
-            © 2026 Iglesia Centro Biblico Marbella · "La verdad os hará libres" — Juan 8:32
+            © 2026 Iglesia Cristiana Centro Bíblico de Marbella · "La verdad os hará libres" — Juan 8:32
           </p>
         </div>
       </footer>
