@@ -204,9 +204,9 @@ export default function App() {
       <div style={{ backgroundColor: 'var(--color-gold)' }}>
         <div className="max-w-6xl mx-auto px-6" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0' }}>
           {[
-            { num: '25+', label: 'Años sirviendo' },
-            { num: '600+', label: 'Familias en comunidad' },
-            { num: '12', label: 'Ministerios activos' },
+            { num: '20+', label: 'Años sirviendo' },
+            { num: '100+', label: 'Familias en comunidad' },
+            { num: '8', label: 'Ministerios activos' },
           ].map((s, i) => (
             <div key={i} style={{ textAlign: 'center', padding: '28px 16px', borderRight: i < 2 ? '1px solid color-mix(in srgb, var(--color-navy) 20%, transparent)' : 'none' }}>
               <div style={{ fontFamily: "var(--font-serif)", fontSize: '2rem', fontWeight: 700, color: 'var(--color-navy)', lineHeight: 1 }}>{s.num}</div>
