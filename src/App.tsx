@@ -43,7 +43,6 @@ const EVENTS = [
 const SERVICES = [
   { day: 'Domingo', times: ['11:00 h — Culto Principal'] },
   { day: 'Martes', times: ['19:00 h — Estudio Bíblico'] },
-  { day: 'Viernes', times: ['19:30 h — Ensayo de alabanza'] },
 ]
 
 const MINISTRIES = [
