@@ -58,6 +58,7 @@ export default function App() {
   const [sent, setSent] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
+  const enConstruccion = true // Cambiar a false cuando el sitio esté listo;
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -96,7 +97,33 @@ export default function App() {
       setLoading(false)
     }
   }
-
+  if (enConstruccion) {
+    return (
+      <div className="min-h-screen bg-slate-900 text-white flex flex-col items-center justify-center p-6 text-center">
+        <h1 className="text-3xl font-bold text-blue-400 mb-2">Centro Bíblico Marbella</h1>
+        <h2 className="text-xl font-semibold mb-4">Sitio web en construcción</h2>
+        <p className="text-gray-300 max-w-md mb-6">
+          Estamos actualizando nuestra plataforma. Nos vemos muy pronto en nuestros cultos y reuniones.
+        </p>
+        <div className="text-sm text-gray-400 border-t border-slate-700 pt-4">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+            {SERVICES.map((s, i) => (
+              <div key={i} style={{ backgroundColor: 'var(--color-navy-light)', border: '1px solid color-mix(in srgb, var(--color-gold) 12%, transparent)', padding: '28px 32px' }}>
+                <div style={{ fontFamily: "var(--font-serif)", fontSize: '1.1rem', fontWeight: 600, color: 'var(--color-gold)', marginBottom: '12px' }}>{s.day}</div>
+                {s.times.map((t, j) => (
+                  <div key={j} style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '6px 0', borderBottom: j < s.times.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none' }}>
+                    <div style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'var(--color-gold)', flexShrink: 0 }} />
+                    <span style={{ fontSize: '14px', color: 'var(--color-cream-dark)' }}>{t}</span>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+          <p>📍 C/ Miraflores Torre 12, Marbella</p>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="min-h-screen" style={{ fontFamily: "var(--font-sans)", backgroundColor: 'var(--color-navy)', color: 'var(--color-cream)' }}>
 
