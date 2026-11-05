@@ -395,7 +395,7 @@ export default function App() {
             <h2 style={{ fontFamily: "var(--font-serif)", fontSize: 'clamp(1.8rem, 3vw, 2.4rem)', fontWeight: 600, color: 'var(--color-cream)', marginBottom: '20px' }}>
               Estamos aquí para ti
             </h2>
-              <div className="w-full max-w-md mr-auto rounded-lg overflow-hidden shadow-lg">
+              <div className="w-full max-w-md mr-auto rounded-lg overflow-hidden shadow-lg mb-4">
                   <iframe 
                   title="Ubicación Centro Bíblico Marbella"
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d400.8303528343767!2d-4.888992982372488!3d36.51448317843857!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd72d900506c0e17%3A0x6f4210155dcb88b4!2sIglesia%20Evang%C3%A9lica%20Centro%20B%C3%ADblico%20Marbella!5e0!3m2!1ses-419!2ses!4v1793882522702!5m2!1ses-419!2ses"
