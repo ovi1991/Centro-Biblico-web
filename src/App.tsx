@@ -72,7 +72,7 @@ export default function App() {
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const enConstruccion = false; // Cambiar a false cuando el sitio esté listo;
+  const enConstruccion = true; // Cambiar a false cuando el sitio esté listo;
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
